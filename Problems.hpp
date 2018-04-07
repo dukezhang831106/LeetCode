@@ -10,7 +10,18 @@
 
 using namespace std;
 
-// Minimum Path Sum: given a m-by-n grid with nonnegative entries, find a path from top left to bottom right with minimal of the sum of all numbers along the path
+// 最小路径和
+/*给定一个只含非负整数的 m x n 网格，找到一条从左上角到右下角的可以使数字之和最小的路径。
+
+注意: 每次只能向下或者向右移动一步。
+
+示例 1:
+
+[[1,3,1],
+ [1,5,1],
+ [4,2,1]]
+
+根据上面的数组，返回 7. 因为路径 1→3→1→1→1 总和最小。*/
 class P64 {
 public:
 	int minPathSum(vector<vector<int>>& grid){
@@ -36,7 +47,9 @@ public:
 };
 
 
-// Given n points on a 2D plane, find the maximum number of points that lie on the same straight line
+// 直线上最多的点数
+/*给定二维平面上有 n 个点，求最多有多少点在同一条直线上。*/
+
 class P149 {
 public:
 	int gcd(int a, int b){
@@ -83,7 +96,26 @@ public:
 	}
 };
 
-// Implement Min Stack
+// 最小栈
+/*设计一个支持 push，pop，top 操作，并能在常量时间内检索最小元素的栈。
+
+    push(x) -- 将元素x推入栈中。
+    pop() -- 删除栈顶的元素。
+    top() -- 获取栈顶元素。
+    getMin() -- 检索栈中的最小元素。
+
+示例:
+
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.getMin();   --> 返回 -2.
+*/
+
 class MinStack{
 public:
 	MinStack(){
@@ -122,7 +154,20 @@ public:
 	}
 };
 
-// Implement Queue using Stacks
+// 用栈来实现队列
+/*使用栈来实现队列的如下操作：
+
+    push(x) -- 将一个元素放入队列的尾部。
+    pop() -- 从队列首部移除元素。
+    peek() -- 返回队列首部的元素。
+    empty() -- 返回队列是否为空。
+
+注意:
+
+    你只能使用标准的栈操作-- 也就是只有push to top, peek/pop from top, size, 和 is empty 操作是可使用的。
+    你所使用的语言也许不支持栈。你可以使用 list 或者 deque (双端队列)来模拟一个栈，只要你仅使用栈的标准操作就可以。
+    假设所有操作都是有效的，比如 pop 或者 peek 操作不会作用于一个空队列上。
+*/
 class MyQueue {
 public:
 	MyQueue(){
@@ -184,7 +229,15 @@ public:
 }*/
 
 
-// Reverse a string
+// 反转字符串
+/*请编写一个函数，其功能是将输入的字符串反转过来。
+
+示例：
+
+输入：s = "hello"
+返回："olleh"
+*/
+
 class P344 {
 public:
 	string reverseString(string s){
@@ -236,11 +289,17 @@ public:
 	}
 };
 
-// Decode a string:
-// Examples: 
-// s = "3[a]2[bc]", return "aaabcbc".
-// s = "3[a2[c]]", return "accaccacc".
-// s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+// 字符串解码
+/*给定一个经过编码的字符串，返回它解码后的字符串。
+编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。
+你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。
+此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。
+示例:
+s = "3[a]2[bc]", 返回 "aaabcbc".
+s = "3[a2[c]]", 返回 "accaccacc".
+s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
+*/
+
 class P394 {
 public:
     string decodeString(string s) {
@@ -278,9 +337,11 @@ public:
 };
 
 
-// Fizz BuzzWrite a program that outputs the string representation of numbers from 1 to n.
-// But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
-
+// Fizz Buzz
+/*写一个程序，输出从 1 到 n 数字的字符串表示。
+1. 如果 n 是3的倍数，输出“Fizz”；
+2. 如果 n 是5的倍数，输出“Buzz”；
+3.如果 n 同时是3和5的倍数，输出 “FizzBuzz”。*/
 class P412 {
 public:
 	vector<string> fizzBuzz(int n) {
@@ -312,10 +373,46 @@ public:
     }
 };
 
+//汉明距离总和
+/*两个整数的 汉明距离 指的是这两个数字的二进制数对应位不同的数量。
+计算一个数组中，任意两个数之间汉明距离的总和。
+示例:
+输入: 4, 14, 2
+输出: 6
+解释: 在二进制表示中，4表示为0100，14表示为1110，2表示为0010。（这样表示是为了体现后四位之间关系）
+所以答案为：
+HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.*/
+class P477 {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+        int res = 0, digits = 32;
+		for (int i = 0; i < digits; i++){
+			int cnt = 0;
+			for(int num : nums) {
+				if (num & (1 << i))
+					++cnt;
+			}
+			res += cnt * (nums.size() - cnt);
+		}
+		return res;
+    }
+	void test() {
+		vector<int> nums = {4, 14, 2};
+		cout << "Sum of Hamming distance is " << totalHammingDistance(nums) << endl;
+		return;
+	}
+};
 
 
-// In LOL, Teemo attacks and make his enemy poisoned, with a poison duration. Given attacking ascending time and poison duration. Compute the total time of enemy in poison duration.
-// For example, [1, 4] and 2 gives 4, with poison time being 1, 2, 4, 5; and [1, 2] and 2 gives 3, with poison time being 1, 2, 3.
+// 提莫攻击
+/*在《英雄联盟》的世界中，有一个叫“提莫”的英雄，他的攻击可以让敌方英雄艾希（编者注：寒冰射手）进入中毒状态。现在，给出提莫对艾希的攻击时间序列和提莫攻击的中毒持续时间，你需要输出艾希的中毒状态总时长。
+你可以认为提莫在给定的时间点进行攻击，并立即使艾希处于中毒状态。
+示例1:
+输入: [1,4], 2
+输出: 4
+原因: 在第1秒开始时，提莫开始对艾希进行攻击并使其立即中毒。中毒状态会维持2秒钟，直到第2秒钟结束。
+在第4秒开始时，提莫再次攻击艾希，使得艾希获得另外2秒的中毒时间。
+所以最终输出4秒。*/
 class P495 {
 public:
 	int findPoisonedDurationRecursively(vector<int>& timeSeries, int duration) {
@@ -350,8 +447,16 @@ public:
 	}
 };
 
-// Diagonal Traverse: given a matrix, teturn all elements in diagonal order
-// Example, matrix [[1, 2, 3], [4, 5, 6], [7, 8, 9]] should return [1, 2, 4, 7, 5, 3, 6, 8, 9]
+// Diagonal Traverse
+/*Given a matrix of M x N elements (M rows, N columns), return all elements of the matrix in diagonal order as shown in the below image.
+Example:
+Input:
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+Output:  [1,2,4,7,5,3,6,8,9]*/
 class P498 {
 public:
 	vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
@@ -406,8 +511,18 @@ public:
 };
 
 
-// Given a binary tree, compute the length of the diameter of the tree, defined as the length of the longest path between any two nodes in a tree.
+// 二叉树的直径
+/*给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过根结点。
+示例 :
+给定二叉树
 
+          1
+         / \
+        2   3
+       / \     
+      4   5    
+
+返回 3, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。*/
 class P543 {
 public:
 	int diameterOfBinaryTree(TreeNode* root) {
@@ -434,8 +549,58 @@ public:
 	}
 };
 
-// Given two binary trees and merge them with the rule that if tow nodes overlap, then sum node values up as the new value of the merged node. If null node, then use the value for Not null node.
+//朋友圈
+/*班上有 N 名学生。其中有些人是朋友，有些则不是。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。
+给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系，否则为不知道。你必须输出所有学生中的已知的朋友圈总数。
+示例 1:
+输入: 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+输出: 2 
+说明：已知学生0和学生1互为朋友，他们在一个朋友圈。
+第2个学生自己在一个朋友圈。所以返回2。
 
+示例 2:
+输入: 
+[[1,1,0],
+ [1,1,1],
+ [0,1,1]]
+输出: 1
+说明：已知学生0和学生1互为朋友，学生1和学生2互为朋友，所以学生0和学生2也是朋友，所以他们三个在一个朋友圈，返回1。*/
+
+class P547 {
+public:
+    int findCircleNum(vector<vector<int>>& M) {
+        vector<int> visited(M.size(), 0);
+		int cnt = 0;
+		for(int i = 0; i < M.size(); i++){
+			for (int num : visited)
+				cout << num << ",";
+			cout << endl;
+			if (visited[i] == 0){
+				dfs(M, visited, i);
+				cnt++;
+			}
+		}
+		return cnt;
+    }
+	void dfs(vector<vector<int>>&M, vector<int>& visited, int target){
+		for (int i = target + 1; i < M.size(); i++){
+			if (M[target][i] == 1 && visited[i] == 0){
+				cout << "visiting node " << i << endl;
+				visited[i] = 1;
+				dfs(M, visited, i);
+			}
+		}
+	}
+	void test() {
+		vector<vector<int>> M = {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
+		cout << "number of circles is " << findCircleNum(M) << endl;
+	}
+};
+
+// Given two binary trees and merge them with the rule that if tow nodes overlap, then sum node values up as the new value of the merged node. If null node, then use the value for Not null node.
 class P617 {
 public:
 	TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {

@@ -1,7 +1,7 @@
 #include "Problems.hpp"
 
 int main() {
-	P795 prob;
+	P547 prob;
 	prob.test();
 	return 0;
 }
