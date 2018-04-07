@@ -600,7 +600,26 @@ public:
 	}
 };
 
-// Given two binary trees and merge them with the rule that if tow nodes overlap, then sum node values up as the new value of the merged node. If null node, then use the value for Not null node.
+// 合并二叉树
+/*给定两个二叉树，想象当你将它们中的一个覆盖到另一个上时，两个二叉树的一些节点便会重叠。
+你需要将他们合并为一个新的二叉树。合并的规则是如果两个节点重叠，那么将他们的值相加作为节点合并后的新值，否则不为 NULL 的节点将直接作为新二叉树的节点。
+示例 1:
+输入: 
+	Tree 1                     Tree 2                  
+          1                         2                             
+         / \                       / \                            
+        3   2                     1   3                        
+       /                           \   \                      
+      5                             4   7                  
+输出: 
+合并后的树:
+	     3
+	    / \
+	   4   5
+	  / \   \ 
+	 5   4   7
+
+注意: 合并必须从两个树的根节点开始。*/
 class P617 {
 public:
 	TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
@@ -632,7 +651,16 @@ public:
 	}
 };
 
-// Replace words in a sentence by the words in the root dictionary, if multiple words in a dictionary, use the shortest root
+// 单词替换
+/*在英语中，我们有一个叫做 词根(root)的概念，它可以跟着其他一些词组成另一个较长的单词——我们称这个词为 继承词(successor)。例如，词根an，跟随着单词 other(其他)，可以形成新的单词 another(另一个)。
+现在，给定一个由许多词根组成的词典和一个句子。你需要将句子中的所有继承词用词根替换掉。如果继承词有许多可以形成它的词根，则用最短的词根替换它。
+你需要输出替换之后的句子。
+
+示例 1:
+输入: dict(词典) = ["cat", "bat", "rat"]
+sentence(句子) = "the cattle was rattled by the battery"
+输出: "the cat was rat by the bat"*/
+
 class P648 {
 public:
     string replaceWords(vector<string>& dict, string sentence) {
@@ -640,8 +668,17 @@ public:
     }
 };
 
-// Given a class of employee information, with id, importance value and id of direct subordinates, return the total importance of this branch
-// For example, employee = [id, importance, [subordinates]], [[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], id = 1 gives importance 5 + 3 + 3 = 11
+// 员工的重要性
+/*定一个保存员工信息的数据结构，它包含了员工唯一的id，重要度 和 直系下属的id。
+比如，员工1是员工2的领导，员工2是员工3的领导。他们相应的重要度为15, 10, 5。那么员工1的数据结构是[1, 15, [2]]，员工2的数据结构是[2, 10, [3]]，员工3的数据结构是[3, 5, []]。注意虽然员工3也是员工1的一个下属，但是由于并不是直系下属，因此没有体现在员工1的数据结构中。
+现在输入一个公司的所有员工信息，以及单个员工id，返回这个员工和他所有下属的重要度之和。
+
+示例 1:
+输入: [[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], 1
+输出: 11
+解释:
+员工1自身的重要度是5，他有两个直系下属2和3，而且2和3的重要度均为3。因此员工1的总重要度是 5 + 3 + 3 = 11。*/
+
 class P690 {
 public:
 	int getImportance(vector<Employee*> employees, int id){
@@ -685,8 +722,25 @@ public:
 
 
 
-// Given an array of integers, return the pivot index, which is defined as the index where the sum to the left is equal to the sum to the right.
-// For example, nums = {1, 7, 3, 6, 5, 6} should return 3 as nums[3] = 6; nums = {1, 2, 3} should return -1
+// 寻找数组的中心索引
+/*给定一个整数类型的数组 nums，请编写一个能够返回数组“中心索引”的方法。
+我们是这样定义数组中心索引的：数组中心索引的左侧所有元素相加的和等于右侧所有元素相加的和。
+如果数组不存在中心索引，那么我们应该返回 -1。如果数组有多个中心索引，那么我们应该返回最靠近左边的那一个。
+
+示例 1:
+输入: 
+nums = [1, 7, 3, 6, 5, 6]
+输出: 3
+解释: 
+索引3 (nums[3] = 6) 的左侧数之和(1 + 7 + 3 = 11)，与右侧数之和(5 + 6 = 11)相等。
+同时, 3 也是第一个符合要求的中心索引。
+
+示例 2:
+输入: 
+nums = [1, 2, 3]
+输出: -1
+解释: 
+数组中不存在满足此条件的中心索引。*/
 class P724 {
 public:
 	int pivotIndex(vector<int>& nums) {
@@ -713,7 +767,25 @@ public:
 	}
 };
 
-// Given a matrix, determine whether it is a Toeplitz matrix
+// 托普利茨矩阵
+/*如果一个矩阵的每一方向由左上到右下的对角线上具有相同元素，那么这个矩阵是托普利茨矩阵。
+给定一个 M x N 的矩阵，当且仅当它是托普利茨矩阵时返回 True。
+
+示例 1:
+输入: matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
+输出: True
+解释:
+1234
+5123
+9512
+在上面这个矩阵中, 对角线分别是 "[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]", 各条对角线上的所有元素都相同, 因此答案是True。
+
+示例 2:
+输入: matrix = [[1,2],[2,2]]
+输出: False
+解释: 
+对角线, 比如: "[1, 2]" 上有不同的元素。*/
+
 class P766 {
 public:
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
@@ -749,7 +821,18 @@ public:
 	}
 };
 
-// Given a string, determine whether you can rearrange the string so that there is no common adjacent character
+// 重构字符串
+/*给定一个字符串S，检查是否能重新排布其中的字母，使得两相邻的字符不同。
+若可行，输出任意可行的结果。若不可行，返回空字符串。
+
+示例 1:
+输入: S = "aab"
+输出: "aba"
+
+示例 2:
+输入: S = "aaab"
+输出: ""*/
+
 class P767 {
 public:
     string reorganizeString(string S) {
@@ -762,8 +845,17 @@ public:
 	}
 };
 
-// Given strings J representing the types of stones that are jewels(guaranteed distinct), and S representing the stones you have. Compute how many stones are also jewels.
-// For exmaple, J = "aA" and S = "aAAbbbb" should return 3; J = "z" and S = "ZZ" should return 0.
+// 宝石与石头
+/* 给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。
+J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此"a"和"A"是不同类型的石头。
+
+示例 1:
+输入: J = "aA", S = "aAAbbbb"
+输出: 3
+
+示例 2:
+输入: J = "z", S = "ZZ"
+输出: 0*/
 
 class P771 {
 public:
@@ -788,7 +880,36 @@ public:
 	}
 };
 
-// Escape the Ghost: Pacman game, your starting point (0,0), ghosts position at ghots, your target at target, determine whether you can reach your target without being caught
+// Escape The Ghosts
+/*You are playing a simplified Pacman game. You start at the point (0, 0), and your destination is (target[0], target[1]). There are several ghosts on the map, the i-th ghost starts at (ghosts[i][0], ghosts[i][1]).
+Each turn, you and all ghosts simultaneously *may* move in one of 4 cardinal directions: north, east, west, or south, going from the previous point to a new point 1 unit of distance away.
+You escape if and only if you can reach the target before any ghost reaches you (for any given moves the ghosts may take.)  If you reach any square (including the target) at the same time as a ghost, it doesn't count as an escape.
+Return True if and only if it is possible to escape.
+
+Example 1:
+Input: 
+ghosts = [[1, 0], [0, 3]]
+target = [0, 1]
+Output: true
+Explanation: 
+You can directly reach the destination (0, 1) at time 1, while the ghosts located at (1, 0) or (0, 3) have no way to catch up with you.
+
+Example 2:
+Input: 
+ghosts = [[1, 0]]
+target = [2, 0]
+Output: false
+Explanation: 
+You need to reach the destination (2, 0), but the ghost at (1, 0) lies between you and the destination.
+
+Example 3:
+Input: 
+ghosts = [[2, 0]]
+target = [1, 0]
+Output: false
+Explanation: 
+The ghost can reach the target at the same time as you.*/
+
 class P789 {
 public:
     bool escapeGhosts(vector<vector<int>>& ghosts, vector<int>& target) {
@@ -893,7 +1014,18 @@ public:
 };
 
 
-// Determine whether a string can be converted by rotation of another string
+// 旋转字符串
+/*给定两个字符串, A 和 B。
+A 的旋转操作就是将 A 最左边的字符移动到最右边。 例如, 若 A = 'abcde'，在移动一次之后结果就是'bcdea' 。如果在若干次旋转操作之后，A 能变成B，那么返回True。
+
+示例 1:
+输入: A = 'abcde', B = 'cdeab'
+输出: true
+
+示例 2:
+输入: A = 'abcde', B = 'abced'
+输出: false*/
+
 class P796 {
 public:
     bool rotateString(string A, string B) {
@@ -918,7 +1050,20 @@ public:
 	}
 };
 
-// Given a directed, acyclic graph of N nodes.  Find all possible paths from node 0 to node N-1, and return them in any order.
+// All Paths From Source to Target
+/*Given a directed, acyclic graph of N nodes.  Find all possible paths from node 0 to node N-1, and return them in any order.
+The graph is given as follows:  the nodes are 0, 1, ..., graph.length - 1.  graph[i] is a list of all nodes j for which the edge (i, j) exists.
+
+Example:
+Input: [[1,2], [3], [3], []] 
+Output: [[0,1,3],[0,2,3]] 
+Explanation: The graph looks like this:
+0--->1
+|    |
+v    v
+2--->3
+There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.*/
+
 class P797 {
 public:
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
